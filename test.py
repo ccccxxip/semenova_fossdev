@@ -11,6 +11,14 @@ def test_devide ():
    b = 2
    result = 0.5
    assert devide(a, b) == result  
+def test_devision_prohibited():
+   try: 
+       devide("A", "B")
+       print("test string-division fails")
+       assert False
+   except ValueError as e:
+       print("Test string-devision passed")      
+
 def test_devide_zero():
    a = 2
    b = 0
