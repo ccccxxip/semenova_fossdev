@@ -3,7 +3,7 @@ sys.path.append('testing/principle/src')
 
 #TODO make it with 'clear pip insfall -e'
 
-from math_demo import (add, add_with_bug)
+from math_demo import (add, add_with_bug, calculator_tax_bugged, calculator_tax)
 
 def test_addition():
     assert add(2, 2) == 4
@@ -39,6 +39,24 @@ def test_addition_clussters():
     assert add(0, -2) == -2
     print("test clusters passed")
 
+def test_tax_calculator_pesticide():
+    # only integers don't allow some test cases 
+    assert calculator_tax(1000) == 150
+    assert calculator_tax(100) == 150 
+    assert calculator_tax(10) ==  1.5
+    assert calculator_tax(1) == 0.15
+    assert calculator_tax(234) == 35.1
+    print("test unbugged calculator passed")
+    # assert calculator_tax_bugged(2.34) == 0.35
+
+def test_tax_calculator():
+    assert calculator_tax_bugged(1000) == 150
+    assert calculator_tax_bugged(100) == 150 
+    assert calculator_tax_bugged(10) ==  1.5
+    assert calculator_tax_bugged(1) == 0.15
+    assert calculator_tax_bugged(234) == 35.1
+    print("test calculator tax passed")
+    assert calculator_tax_bugged(2.34) == 0.35
 
 if __name__ == "__main__":
     test_addition()
@@ -46,3 +64,6 @@ if __name__ == "__main__":
     test_addition_duplicate()
     test_additin_overkill()
     test_addition_clussters()
+    test_tax_calculator()
+    test_tax_calculator()
+
