@@ -9,3 +9,6 @@ run:
 
 typecheck:
 	$(PYTHON) -m mypy src/
+
+format:
+	$(PYTHON) -m black src/
