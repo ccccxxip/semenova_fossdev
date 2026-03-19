@@ -12,3 +12,6 @@ typecheck:
 
 format:
 	$(PYTHON) -m black src/
+
+check-requirements:
+	$(PYTHON) scripts/check_requirements.py
