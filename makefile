@@ -5,7 +5,7 @@ ifndef PRACTICE
 endif
 	@echo "cteated practice"
 	mkdir -p $(PRACTICE)
-
+	cp practiceMakefile $(PRACTICE)/Makefile
 
 remove-practice:
 ifndef PRACTICE
