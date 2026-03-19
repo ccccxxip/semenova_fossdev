@@ -15,3 +15,6 @@ format:
 
 check-requirements:
 	$(PYTHON) scripts/check_requirements.py
+
+
+check: typecheck check-requirements
