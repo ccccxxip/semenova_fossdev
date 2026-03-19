@@ -7,3 +7,5 @@ install:
 run:
 	$(PYTHON) src/app.py
 
+typecheck:
+	$(PYTHON) -m mypy src/
