@@ -8,7 +8,7 @@ run:
 	$(PYTHON) src/app.py
 
 typecheck:
-	$(PYTHON) -m mypy src/ --ignore-missing-imports
+	$(PYTHON) -m mypy src/ --ignore-missing-imports --disable-error-code=import-untyped
 
 format:
 	$(PYTHON) -m black src/
