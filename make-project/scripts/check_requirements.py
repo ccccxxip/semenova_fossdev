@@ -25,3 +25,11 @@ with open(REQ_FILE) as f:
         line = line.strip()
         if line and not line.startswith("#"):
             declared.add(line.split("==")[0])
+
+missing = all_imports - declared
+if missing:
+    print("не хватает requirements.txt:", ", ".join(sorted(missing)))
+    exit(1)
+else:
+    print("все есть :)")
+
