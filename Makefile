@@ -4,5 +4,5 @@ install:
 test:
 	pytest -v
 
-run:
-	python -m pyflowkit.core
+build:
+	python -m build
