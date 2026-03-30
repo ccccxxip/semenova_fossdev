@@ -48,3 +48,6 @@ pip install -i https://test.pypi.org/simple/ pyflowkit
 - pytest
 - build
 - setuptools
+
+- GitHub репозиторий: https://github.com/ccccxxip/semenova_fossdev
+- TestPyPI пакет: https://test.pypi.org/project/pyflowkit/
