@@ -16,3 +16,8 @@ docs/make.bat
 
 *.log
 *.tmp
+
+docs_domain/docs/build/
+docs_domain/docs/source/
+docs_domain/docs/Makefile
+docs_domain/docs/make.bat
