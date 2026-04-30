@@ -1,31 +1,21 @@
-.PHONY: help test clean install create-structure
+.PHONY: help test clean install run
 
 help:
 	@echo "Available targets:"
-	@echo "  make test           - Run tests"
-	@echo "  make clean          - Clean temporary files"
-	@echo "  make install        - Install dependencies"
-	@echo "  make create-structure - Create full project structure"
+	@echo "  make test    - Run tests"
+	@echo "  make clean   - Clean temporary files"
+	@echo "  make install - Install dependencies"
+	@echo "  make run     - Run order_service on port 8803 (requires product_service on port 8001)"
 
 test:
-	pytest tests/
+	pytest tests/ -v
 
 clean:
 	rm -rf __pycache__ .pytest_cache build dist *.egg-info
+	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
 
 install:
-	pip install -e .
-
-create-structure:
-	@echo "Creating structure for $(PRACTICE)"
-	mkdir -p src tests docs
-	touch src/.gitkeep
-	touch tests/.gitkeep
-	echo "# $(PRACTICE)" > README.md
-	echo "# Domain documentation for $(PRACTICE)" > docs/DOMAIN.md
-	printf "requests\npytest\n" > requirements.txt
-	printf "from setuptools import setup, find_packages\n\nsetup(\n    name=\"$(PRACTICE)\",\n    version=\"0.1.0\",\n    packages=find_packages(),\n    install_requires=[\"requests\"],\n    author=\"Your Name\",\n    description=\"A simple $(PRACTICE) implementation\",\n)\n" > setup.py
-	@echo "Structure created successfully"
+	poetry install --no-root
 
 run:
-	PRODUCT_SERVICE_URL=http://127.0.0.1:8001 poetry run uvicorn src.app.main:app --host 127.0.0.1 --port 8802
+	PRODUCT_SERVICE_URL=http://127.0.0.1:8001 poetry run uvicorn src.app.main:app --reload --host 127.0.0.1 --port 8803
