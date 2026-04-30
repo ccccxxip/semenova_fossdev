@@ -1,11 +1,16 @@
-FROM python:3.12-slim 
+FROM python:3.14-slim
 
 WORKDIR /app
 
+RUN pip install poetry
+
 COPY pyproject.toml poetry.lock ./
 
-RUN pip install poetry && poetry install --only main --no-root
+RUN poetry config virtualenvs.create false && \
+    poetry install --no-interaction --no-ansi --no-root --only main
 
-COPY  src/app ./app
+COPY src/app ./app
 
-CMD ["poetry", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", ]
+ENV PRODUCT_SERVICE_URL=http://host.docker.internal:8001
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

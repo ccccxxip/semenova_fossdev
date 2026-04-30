@@ -1,11 +1,14 @@
-FROM python:3.12-slim 
+FROM python:3.14-slim
 
 WORKDIR /app
 
+RUN pip install poetry
+
 COPY pyproject.toml poetry.lock ./
 
-RUN pip install poetry && poetry install --only main --no-root
+RUN poetry config virtualenvs.create false && \
+    poetry install --no-interaction --no-ansi --no-root --only main
 
-COPY  src/app ./app
+COPY src/ ./src/
 
-CMD ["poetry", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", ]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
