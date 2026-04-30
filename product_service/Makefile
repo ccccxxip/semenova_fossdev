@@ -26,3 +26,6 @@ create-structure:
 	printf "requests\npytest\n" > requirements.txt
 	printf "from setuptools import setup, find_packages\n\nsetup(\n    name=\"$(PRACTICE)\",\n    version=\"0.1.0\",\n    packages=find_packages(),\n    install_requires=[\"requests\"],\n    author=\"Your Name\",\n    description=\"A simple $(PRACTICE) implementation\",\n)\n" > setup.py
 	@echo "Structure created successfully"
+
+run:
+	poetry run uvicorn src.main:app --host 127.0.0.1 --port 8001
